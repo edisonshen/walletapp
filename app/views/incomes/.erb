@@ -1,0 +1,5 @@
+<%= div_for income do %>
+	<p>
+		<strong>Posted<%= time_ago_in_words(income.created_at) %> ago </strong></br><%= income.amount %>
+	</p>
+<%end%>

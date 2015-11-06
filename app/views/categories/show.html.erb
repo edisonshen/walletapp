@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<h2>Incomes</h2>
+<div id = "incomes">
+	<%= @category.incomes.each do |income| %>
+		<%= div_for income do %>
+		<p>
+			<strong>Posted <%= time_ago_in_words(income.created_at)%></strong><br />
+			<%= h(income.amount)%>
+		</p>
+		<%end%>
+	<%end%>
+</div>
+
+<h2>Costs</h2>
+<div id = "costs">
+	<%= @category.costs.each do |cost| %>
+		<%= div_for cost do %>
+		<p>
+			<strong>Posted <%= time_ago_in_words(cost.created_at)%></strong><br />
+			<%= h(cost.amount)%>
+		</p>
+		<%end%>
+	<%end%>
+</div>
+
+<%= form_for ([@category, Income.new]) do |f| %>
+	<p> <%= f.label :title, "new income" %> <br />
+		<%= f.text_field :amount %>
+	</p>
+	<p><%= f.submit "add income" %></p>
+<%end%>
+
+<%= form_for ([@category, Cost.new]) do |f| %>
+	<p> <%= f.label :title, "new cost in U.S dollar" %> <br />
+		<%= f.text_field :amount %>
+	</p>
+	<p><%= f.submit "add income" %></p>
+<%end%>
+
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
+
